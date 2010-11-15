@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright 2010 FuseSource
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/osgi
+            http://www.springframework.org/schema/osgi/spring-osgi.xsd
+        http://camel.apache.org/schema/spring
+            http://camel.apache.org/schema/spring/camel-spring.xsd
+       ">
+
+    <camel:camelContext trace="false">
+        <camel:route>
+            <camel:from uri="nmr:payment-service-bank1"/>
+            <camel:to uri="log:payment-service-bank1"/>
+            <!--
+                This route is expecting the Transfer request to be in XML form,
+                so we need to unmarshal it from XML to Java to call our bean.
+            -->
+            <camel:unmarshal>
+                <camel:jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </camel:unmarshal>
+
+            <camel:bean ref="paymentServiceSE"/>
+
+            <!--
+                Convert (Marshal) JAXB instance to XML
+            -->
+            <camel:marshal>
+                <camel:jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </camel:marshal>
+        </camel:route>
+    </camel:camelContext>
+
+    <bean id="paymentServiceSE"
+          class="org.fusesource.examples.payment_service.impl.PaymentImpl"
+          init-method="init"/>
+
+    <!-- Register bean as OSGi Service with properties -->
+    <osgi:service interface="org.fusesource.examples.payment_service.Payment"
+                  ref="paymentServiceSE">
+        <osgi:service-properties>
+            <beans:entry key="NAME" value="bank1"/>
+            <beans:entry key="NMR" value="payment-service-bank1"/>
+        </osgi:service-properties>
+    </osgi:service>
+
+</beans>
