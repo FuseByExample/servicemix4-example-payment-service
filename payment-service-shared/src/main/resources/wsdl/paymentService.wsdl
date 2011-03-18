@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright 2010 FuseSource
+  ~ Copyright 2011 FuseSource
   ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
   ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~        http://www.apache.org/licenses/LICENSE-2.0
   ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
   -->
 
 <wsdl:definitions name="wsdl-first"
@@ -21,12 +21,12 @@
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xmlns:tns="http://examples.fusesource.org/payment-service"
-                  xmlns:typens="http://examples.fusesource.org/payment-service/types"
-                  targetNamespace="http://examples.fusesource.org/payment-service">
+                  xmlns:tns="http://examples.fusesource.com/payment-service"
+                  xmlns:typens="http://examples.fusesource.com/payment-service/types"
+                  targetNamespace="http://examples.fusesource.com/payment-service">
 
     <wsdl:types>
-        <xsd:schema targetNamespace="http://examples.fusesource.org/payment-service/types"
+        <xsd:schema targetNamespace="http://examples.fusesource.com/payment-service/types"
                     elementFormDefault="qualified">
             <xsd:element name="transferRequest">
                 <xsd:complexType>
@@ -77,7 +77,7 @@
     </wsdl:binding>
 
     <wsdl:service name="PaymentService">
-        <wsdl:port binding="tns:PaymentSOAPBinding" name="soap">
+        <wsdl:port binding="tns:PaymentSOAPBinding" name="PaymentPort">
             <soap:address location="http://localhost:9090/paymentService"/>
         </wsdl:port>
     </wsdl:service>

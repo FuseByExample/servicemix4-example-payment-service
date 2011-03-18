@@ -34,7 +34,7 @@ Module Overview:
   service (transfer).
 
 Requirements:
-* ServiceMix 4.3.0-fuse-02-00 (http://fusesource.com/downloads/)
+* ServiceMix 4.3.1-fuse-00-00 (http://fusesource.com/downloads/)
 * Maven 2.2.1 or 3.0 (http://maven.apache.org/)
 * Java SE 6
 
@@ -50,7 +50,7 @@ To run:
 3) Add this projects features.xml config to ServiceMix from the ServiceMix Console
    (makes it easier to install bundles with all required dependencies)
 
-karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.0.0/xml/features
+karaf@root> features:addUrl mvn:com.fusesource.examples/payment-service-shared/1.0.0-SNAPSHOT/xml/features
 
 
 4) Install the bundles.

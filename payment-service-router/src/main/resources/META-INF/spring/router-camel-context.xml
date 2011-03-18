@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright 2010 FuseSource
+  ~ Copyright 2011 FuseSource
   ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
   ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~        http://www.apache.org/licenses/LICENSE-2.0
   ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
   -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:camel="http://camel.apache.org/schema/spring"
-       xmlns:payment-types="http://examples.fusesource.org/payment-service/types"
+       xmlns:payment-types="http://examples.fusesource.com/payment-service/types"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -44,7 +44,7 @@
                 </camel:recipientList>
                 <camel:doCatch>
                     <!-- Catch Error when NMR endpoint can not be found -->
-                    <camel:exception>org.fusesource.examples.listing_service.impl.BankNotFoundException</camel:exception>
+                    <camel:exception>com.fusesource.examples.listing_service.impl.BankNotFoundException</camel:exception>
                     <camel:to uri="log:payment-service-router-error?showAll=true"/>
                     <camel:bean ref="createErrorResponse"/>
                 </camel:doCatch>
@@ -60,22 +60,22 @@
                 so we need to unmarshal it from XML to Java to call our bean.
             -->
             <camel:unmarshal>
-                <camel:jaxb contextPath="org.fusesource.examples.listing_service.types"/>
+                <camel:jaxb contextPath="com.fusesource.examples.listing_service.types"/>
             </camel:unmarshal>
 
             <camel:bean ref="listingImpl" method="discoverListings"/>
 
             <camel:marshal>
-                <camel:jaxb contextPath="org.fusesource.examples.listing_service.types"/>
+                <camel:jaxb contextPath="com.fusesource.examples.listing_service.types"/>
             </camel:marshal>
             <camel:to uri="log:payment-service-listing"/>
         </camel:route>
     </camel:camelContext>
 
     <bean id="createErrorResponse"
-          class="org.fusesource.examples.payment_service.impl.CreateErrorResponse"/>
+          class="com.fusesource.examples.payment_service.impl.CreateErrorResponse"/>
 
     <bean id="listingImpl"
-          class="org.fusesource.examples.listing_service.impl.ListingImpl"/>
+          class="com.fusesource.examples.listing_service.impl.ListingImpl"/>
 
 </beans>
