@@ -34,7 +34,7 @@ Module Overview:
   service (transfer).
 
 Requirements:
-* ServiceMix 4.3.1-fuse-00-00 (http://fusesource.com/downloads/)
+* ServiceMix 4.3.1-fuse-01-09 (http://fusesource.com/downloads/)
 * Maven 2.2.1 or 3.0 (http://maven.apache.org/)
 * Java SE 6
 
@@ -50,7 +50,7 @@ To run:
 3) Add this projects features.xml config to ServiceMix from the ServiceMix Console
    (makes it easier to install bundles with all required dependencies)
 
-karaf@root> features:addUrl mvn:com.fusesource.examples/payment-service-shared/1.0.0-SNAPSHOT/xml/features
+karaf@root> features:addUrl mvn:com.fusesource.examples/payment-service-shared/1.2.0-SNAPSHOT/xml/features
 
 
 4) Install the bundles.
@@ -62,6 +62,10 @@ karaf@root> features:install payment-service-bank1
 karaf@root> features:install payment-service-bank2
 karaf@root> features:install payment-service-ws
 karaf@root> features:install payment-service-batch
+
+   there is also a shortcut features that installs all the others
+
+karaf@root> features:install payment-service-all
 
 5) To test the batch file processing, there is an existing batch file in the
    payment-service-batch modules.
@@ -84,3 +88,8 @@ karaf@root> log:display
    * http://localhost:9090/listingService?WSDL
    * http://localhost:9090/paymentService?WSDL
 
+   you can also the payment-service-client, which shows using CXF generated client code
+
+payment-service/payment-service-client> mvn -PListing
+
+payment-service/payment-service-client> mvn -PPayment
