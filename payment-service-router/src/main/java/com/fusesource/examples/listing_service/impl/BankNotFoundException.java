@@ -17,7 +17,9 @@
 package com.fusesource.examples.listing_service.impl;
 
 public class BankNotFoundException extends RuntimeException {
-    public BankNotFoundException(String s) {
+	private static final long serialVersionUID = 5136150050061465350L;
+
+	public BankNotFoundException(String s) {
         super(s);
     }
 

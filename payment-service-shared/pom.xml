@@ -71,6 +71,7 @@
                 <extensions>true</extensions>
                 <executions>
                     <execution>
+                    	<phase>generate-sources</phase>
                         <goals>
                             <goal>wsdl2java</goal>
                         </goals>
