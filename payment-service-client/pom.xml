@@ -36,7 +36,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>payment-service-shared</artifactId>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

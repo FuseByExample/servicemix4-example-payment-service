@@ -33,7 +33,6 @@
     <camel:camelContext trace="false">
         <camel:route>
             <camel:from uri="file:tmp/file-in?delete=true"/>
-            <camel:convertBodyTo type="org.w3c.dom.Document"/>
             <camel:to uri="log:batchSplitLog"/>
             <camel:split>
                 <camel:xpath>/typ:transfers/typ:transferRequest</camel:xpath>

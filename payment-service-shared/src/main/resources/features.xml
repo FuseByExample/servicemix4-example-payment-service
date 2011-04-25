@@ -23,42 +23,48 @@
     <feature name='payment-service-bank1' version='${project.version}'>
         <feature version="${servicemix.version}">camel-nmr</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
-        <bundle>mvn:com.fusesource.examples/payment-service-shared/${project.version}</bundle>
-        <bundle>mvn:com.fusesource.examples/payment-service-bank1/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-bank1/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-bank2' version='${project.version}'>
         <feature version="${servicemix.version}">camel-nmr</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
-        <bundle>mvn:com.fusesource.examples/payment-service-shared/${project.version}</bundle>
-        <bundle>mvn:com.fusesource.examples/payment-service-bank2/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-bank2/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-router' version='${project.version}'>
         <feature version="${servicemix.version}">camel-nmr</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
-        <bundle>mvn:com.fusesource.examples/payment-service-shared/${project.version}</bundle>
-        <bundle>mvn:com.fusesource.examples/payment-service-router/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-router/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-ws' version='${project.version}'>
         <feature version="${servicemix.version}">camel-nmr</feature>
         <feature version="${camel.version}">camel-cxf</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
-        <bundle>mvn:com.fusesource.examples/payment-service-shared/${project.version}</bundle>
-        <bundle>mvn:com.fusesource.examples/payment-service-ws/${project.version}</bundle>
+        <feature version="${project.version}">payment-service-router</feature>
+        <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-ws/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-batch' version='${project.version}'>
         <feature version="${servicemix.version}">camel-nmr</feature>
-        <bundle>mvn:com.fusesource.examples/payment-service-batch/${project.version}</bundle>
+        <feature version="${project.version}">payment-service-router</feature>
+        <bundle>mvn:${project.groupId}/payment-service-batch/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-all' version='${project.version}'>
-        <feature version="${project.version}">payment-service-router</feature>
-        <feature version="${project.version}">payment-service-bank1</feature>
-        <feature version="${project.version}">payment-service-bank2</feature>
-        <feature version="${project.version}">payment-service-ws</feature>
-        <feature version="${project.version}">payment-service-batch</feature>
+        <feature version="${servicemix.version}">camel-nmr</feature>
+        <feature version="${camel.version}">camel-cxf</feature>
+        <feature version="${camel.version}">camel-jaxb</feature>
+        <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-bank1/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-bank2/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-router/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-batch/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/payment-service-ws/${project.version}</bundle>
     </feature>
 </features>

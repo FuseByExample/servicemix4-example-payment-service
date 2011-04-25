@@ -2,7 +2,7 @@ This project is an example of using OSGi, Camel, and ServiceMix together,
 specifically ServiceMix 4's NMR component. A number of things are shown within
 this project:
  * use of the Camel-NMR component for inter OSGi bundle communication
- * dynamic routing combining Camel's recipient list and the OSGi Service Registry
+ * dynamic routing combining Camel's recipient list and OSGi Service Registry
  * use of Camel's Content Based Router
  * multiple front-end proxies (WS and batch file)
  * bridging one way (fire and forget) messaging with request-response
@@ -10,13 +10,14 @@ this project:
 
 The scenario is a payment transfer service where transfer requests can be made
 either through a WS (SOAP/HTTP) interface or through batch files. These transfer
-requests are routed to banking services that can come and go at runtime (i.e. new
-banks can be added and removed at runtime).
+requests are routed to banking services that can come and go at runtime
+(i.e. new banks can be added and removed at runtime).
 
-This solution is a bit over-engineered, but the goal of this effort is to provide
-examples of best practices in creating applications using these technologies.
-Following is a brief overview of the included modules. I'll be trying to blog in
-more detail about why parts of this solution were created this way.
+This solution is a bit over-engineered, but the goal of this effort is to
+provide examples of best practices in creating applications using these
+technologies. Following is a brief overview of the included modules. I'll
+be trying to blog in more detail about why parts of this solution were created
+this way.
 
 http://scottcranton.blogspot.com/
 
@@ -24,14 +25,14 @@ Module Overview:
 * payment-service-shared: contains wsdl and generated JAXB artifacts, providing
   a common data model for data moving through the system
 * payment-service-router: does Content Based Routing on the transfer request to
-  send to the right back-end back service for processing. This bundle also provides
-  an implementation of the listing service that interrogates the OSGi Service
-  Registry to show what bank services are available.
+  send to the right back-end back service for processing. This bundle also
+  provides an implementation of the listing service that interrogates the OSGi
+  Service Registry to show what bank services are available.
 * payment-service-bank{1,2}: process the transfer request
 * payment-service-ws: SOAP/HTTP request-response proxy for transfer service
 * payment-service-batch: splits multiple requests within a file, and forwards
-  them to the router. Adapts a one-way process (batch file) to a request-response
-  service (transfer).
+  them to the router. Adapts a one-way process (batch file) to a
+  request-response service (transfer).
 
 Requirements:
 * ServiceMix 4.3.1-fuse-01-09 (http://fusesource.com/downloads/)
@@ -47,8 +48,8 @@ To run:
 
 <ServiceMix home> $ bin/servicemix
 
-3) Add this projects features.xml config to ServiceMix from the ServiceMix Console
-   (makes it easier to install bundles with all required dependencies)
+3) Add this projects features.xml config to ServiceMix from the ServiceMix
+   Console (makes it easier to install bundles with all required dependencies)
 
 karaf@root> features:addUrl mvn:com.fusesource.examples/payment-service-shared/1.2.0-SNAPSHOT/xml/features
 
@@ -88,7 +89,8 @@ karaf@root> log:display
    * http://localhost:9090/listingService?WSDL
    * http://localhost:9090/paymentService?WSDL
 
-   you can also the payment-service-client, which shows using CXF generated client code
+   you can also the payment-service-client, which shows using CXF generated
+   client code
 
 payment-service/payment-service-client> mvn -PListing
 
