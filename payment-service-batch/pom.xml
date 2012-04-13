@@ -24,7 +24,7 @@
     <parent>
         <artifactId>payment-service</artifactId>
         <groupId>com.fusesource.examples</groupId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>1.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>payment-service-batch</artifactId>
@@ -44,8 +44,7 @@
                 <configuration>
                     <instructions>
                         <Import-Package>
-                            *,
-                            org.apache.servicemix.nmr.api
+                            *
                         </Import-Package>
                     </instructions>
                 </configuration>
@@ -60,8 +59,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.servicemix.nmr</groupId>
-            <artifactId>org.apache.servicemix.nmr.api</artifactId>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
         </dependency>
     </dependencies>
 

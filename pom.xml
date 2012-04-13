@@ -25,7 +25,7 @@
     <artifactId>payment-service</artifactId>
     <packaging>pom</packaging>
     <name>FuseSource Example Payment Service</name>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
     <url>http://fusesource.com/</url>
 
     <licenses>
@@ -64,15 +64,18 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <servicemix.version>4.3.1-fuse-01-09</servicemix.version>
-        <servicemix.nmr.version>1.4.0-fuse-01-09</servicemix.nmr.version>
-        <karaf.version>2.1.4-fuse-00-09</karaf.version>
-        <camel.version>2.6.0-fuse-01-09</camel.version>
-        <cxf.version>2.3.3-fuse-01-09</cxf.version>
+        <activemq.version>5.5.1-fuse-00-06</activemq.version>
+        <aries.version>0.3</aries.version>
+        <camel.version>2.8.0-fuse-00-06</camel.version>
+        <cxf.version>2.4.2-fuse-00-06</cxf.version>
+        <karaf.version>2.2.2-fuse-00-06</karaf.version>
         <osgi.core.version>4.2.0</osgi.core.version>
+        <pax.logging.version>1.6.2</pax.logging.version>
+        <servicemix.version>4.4.1-fuse-00-06</servicemix.version>
+        <servicemix.nmr.version>1.5.1-fuse-00-06</servicemix.nmr.version>
         <spring.version>3.0.5.RELEASE</spring.version>
-        <spring.osgi.version>1.2.0</spring.osgi.version>
-        <pax.logging.version>1.5.3</pax.logging.version>
+        <spring.osgi.version>1.2.1</spring.osgi.version>
+        <slf4j.version>1.6.1</slf4j.version>
     </properties>
 
     <repositories>
@@ -151,12 +154,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.8</version>
+                    <version>2.9</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.5</version>
+                    <version>2.6</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.cxf</groupId>
@@ -166,12 +169,13 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.4</version>
+                    <extensions>true</extensions>
+                    <version>2.3.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>1.5</version>
+                    <version>1.7</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -207,49 +211,30 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-camel</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-transports-http-jetty</artifactId>
                 <version>${cxf.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.servicemix.nmr</groupId>
-                <artifactId>org.apache.servicemix.nmr.api</artifactId>
-                <version>${servicemix.nmr.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
-                <version>${osgi.core.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.osgi</groupId>
-                <artifactId>spring-osgi-core</artifactId>
-                <version>${spring.osgi.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.ops4j.pax.logging</groupId>
-                <artifactId>pax-logging-api</artifactId>
-                <version>${pax.logging.version}</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <module>payment-service-shared</module>
-        <module>payment-service-router</module>
         <module>payment-service-ws</module>
         <module>payment-service-batch</module>
-        <module>payment-service-bank1</module>
-        <module>payment-service-bank2</module>
+        <module>payment-service-bank</module>
         <module>payment-service-client</module>
     </modules>
 

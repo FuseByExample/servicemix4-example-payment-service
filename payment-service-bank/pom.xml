@@ -18,18 +18,19 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>payment-service</artifactId>
         <groupId>com.fusesource.examples</groupId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>1.3.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>payment-service-router</artifactId>
+    <artifactId>payment-service-bank</artifactId>
     <packaging>bundle</packaging>
-    <name>FuseSource Example Payment Service :: Router</name>
+    <name>FuseSource Example Payment Service :: Bank</name>
+    <url>http://fusesource.com</url>
 
     <build>
         <defaultGoal>install</defaultGoal>
@@ -43,11 +44,8 @@
                     <instructions>
                         <Import-Package>
                             *,
-                            com.fusesource.examples.listing_service,
-                            com.fusesource.examples.listing_service.types,
                             com.fusesource.examples.payment_service,
-                            com.fusesource.examples.payment_service.types,
-                            org.apache.servicemix.nmr.api
+                            com.fusesource.examples.payment_service.types
                         </Import-Package>
                     </instructions>
                 </configuration>
@@ -62,6 +60,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring</artifactId>
         </dependency>
@@ -71,23 +74,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.servicemix.nmr</groupId>
-            <artifactId>org.apache.servicemix.nmr.api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.ops4j.pax.logging</groupId>
-            <artifactId>pax-logging-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.osgi</groupId>
-            <artifactId>spring-osgi-core</artifactId>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
   ~ Copyright 2011 FuseSource
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,88 +12,33 @@
   ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
-  -->
-
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:cxf="http://camel.apache.org/schema/cxf"
-       xmlns:camel="http://camel.apache.org/schema/spring"
-       xmlns:osgi="http://www.springframework.org/schema/osgi"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/osgi
-            http://www.springframework.org/schema/osgi/spring-osgi.xsd
-        http://camel.apache.org/schema/cxf
-            http://camel.apache.org/schema/cxf/camel-cxf.xsd
-        http://camel.apache.org/schema/spring
-            http://camel.apache.org/schema/spring/camel-spring.xsd
-       ">
+  --><beans xmlns="http://www.springframework.org/schema/beans" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:cxf="http://camel.apache.org/schema/cxf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans             http://www.springframework.org/schema/beans/spring-beans.xsd         http://camel.apache.org/schema/cxf             http://camel.apache.org/schema/cxf/camel-cxf.xsd         http://camel.apache.org/schema/spring             http://camel.apache.org/schema/spring/camel-spring.xsd        ">
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
 
-    <cxf:cxfEndpoint id="paymentServiceEndpoint"
-                     serviceClass="com.fusesource.examples.payment_service.Payment"
-                     address="http://localhost:9090/paymentService"/>
+    <cxf:cxfEndpoint address="http://localhost:9090/paymentService" id="paymentServiceEndpoint" serviceClass="com.fusesource.examples.payment_service.Payment"/>
 
-    <cxf:cxfEndpoint id="listingServiceEndpoint"
-                     serviceClass="com.fusesource.examples.listing_service.Listing"
-                     address="http://localhost:9090/listingService"/>
+    <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
 
-    <camel:camelContext trace="false">
-        <camel:route>
-            <camel:from uri="cxf:bean:paymentServiceEndpoint"/>
-            <!--
-                CXF will provide the request wrapped in a MessageContentsList.
-                This transform will extract the needed Transfer object
-            -->
-            <camel:transform>
-                <camel:simple>${in.body[0]}</camel:simple>
-            </camel:transform>
-            <!--
-                marshal will convert the JAXB object to its XML form. This
-                example expects XML to sent over the NMR.
-            -->
-            <camel:marshal>
-                <camel:jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </camel:marshal>
-            <camel:to uri="log:payment-service-ws"/>
-            <camel:to uri="nmr:payment-service-transfer"/>
-            <camel:unmarshal>
-                <camel:jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </camel:unmarshal>
-        </camel:route>
-
-        <camel:route>
-            <camel:from uri="cxf:bean:listingServiceEndpoint"/>
-            <!--
-                CXF will provide the request wrapped in a MessageContentsList
-            -->
-            <camel:transform>
-                <camel:simple>${in.body[0]}</camel:simple>
-            </camel:transform>
-            <camel:to uri="log:payment-service-ws"/>
-            <camel:to uri="nmr:payment-service-listing"/>
-            <camel:unmarshal>
-                <camel:jaxb contextPath="com.fusesource.examples.listing_service.types"/>
-            </camel:unmarshal>
-        </camel:route>
-    </camel:camelContext>
-
-    <!--
-        Do NOT start this front-end service till something is listening on the
-        target NMR endpoint. All NMR endpoint are registered as OSGi Services.
-    -->
-    <osgi:reference id="transferEndpoint"
-                    interface="org.apache.servicemix.nmr.api.internal.InternalEndpoint"
-                    filter="(NAME=payment-service-transfer)"
-                    cardinality="1..1"/>
-
-    <osgi:reference id="listingEndpoint"
-                    interface="org.apache.servicemix.nmr.api.internal.InternalEndpoint"
-                    filter="(NAME=payment-service-listing)"
-                    cardinality="1..1"/>
+    <camelContext id="wsContext" xmlns="http://camel.apache.org/schema/spring" trace="false">
+    <route id="wsRoute">
+        <from uri="cxf:bean:paymentServiceEndpoint"/>
+        <transform>
+            <language language="simple">${in.body[0]}</language>
+        </transform>
+        <marshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </marshal>
+        <to uri="log:payment-service-ws"/>
+        <to uri="activemq:queue:payment-service-transfer"/>
+        <unmarshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </unmarshal>
+    </route>
+</camelContext>
 
 </beans>

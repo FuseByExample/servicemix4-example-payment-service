@@ -16,17 +16,28 @@
 
 package com.fusesource.examples.payment_service.impl;
 
+import com.fusesource.examples.payment_service.Payment;
+import com.fusesource.examples.payment_service.types.TransferRequest;
 import com.fusesource.examples.payment_service.types.TransferResponse;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
-public class CreateErrorResponse implements Processor {
-    @Override
-    public void process(Exchange exchange) throws Exception {
+public class PaymentImpl implements Payment {
+    private static final Log LOG = LogFactory.getLog(PaymentImpl.class);
+
+    public TransferResponse transferFunds(TransferRequest payload) {
         TransferResponse response = new TransferResponse();
 
-        response.setReply("Fail: could not find target bank service '" + exchange.getProperty("targetBank") + "'");
+        LOG.info("Bank: transferred amount " + payload.getAmount()
+                + " from " + payload.getFrom()
+                + " to " + payload.getTo());
 
-        exchange.getIn().setBody(response);
+        response.setReply("Bank: OK");
+
+        return response;
+    }
+
+    public void init() {
+        LOG.info("Bank: PaymentImpl started...");
     }
 }

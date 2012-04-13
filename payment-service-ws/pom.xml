@@ -24,7 +24,7 @@
     <parent>
         <artifactId>payment-service</artifactId>
         <groupId>com.fusesource.examples</groupId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>1.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>payment-service-ws</artifactId>
@@ -48,9 +48,7 @@
                             org.springframework.beans.factory.config,
                             com.fusesource.examples.payment_service,
                             com.fusesource.examples.payment_service.types,
-                            com.fusesource.examples.listing_service,
-                            com.fusesource.examples.listing_service.types,
-                            org.apache.servicemix.nmr.api
+			    javax.xml.namespace
                         </Import-Package>
                         <Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
                     </instructions>
@@ -75,13 +73,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.servicemix.nmr</groupId>
-            <artifactId>org.apache.servicemix.nmr.api</artifactId>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
         </dependency>
     </dependencies>
 
