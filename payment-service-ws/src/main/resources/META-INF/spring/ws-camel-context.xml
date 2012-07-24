@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
   ~ Copyright 2012 FuseSource
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,33 +13,43 @@
   ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~    See the License for the specific language governing permissions and
   ~    limitations under the License.
-  --><beans xmlns="http://www.springframework.org/schema/beans" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:cxf="http://camel.apache.org/schema/cxf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans             http://www.springframework.org/schema/beans/spring-beans.xsd         http://camel.apache.org/schema/cxf             http://camel.apache.org/schema/cxf/camel-cxf.xsd         http://camel.apache.org/schema/spring             http://camel.apache.org/schema/spring/camel-spring.xsd        ">
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       ">
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
 
-    <cxf:cxfEndpoint address="http://localhost:9090/paymentService" id="paymentServiceEndpoint" serviceClass="com.fusesource.examples.payment_service.Payment"/>
+    <cxf:cxfEndpoint id="paymentServiceEndpoint"
+                     address="http://localhost:9090/paymentService"
+                     serviceClass="com.fusesource.examples.payment_service.Payment"/>
 
     <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
         <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>
 
     <camelContext id="wsContext" xmlns="http://camel.apache.org/schema/spring" trace="false">
-    <route id="wsRoute">
-        <from uri="cxf:bean:paymentServiceEndpoint"/>
-        <transform>
-            <language language="simple">${in.body[0]}</language>
-        </transform>
-        <marshal>
-            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-        </marshal>
-        <to uri="log:payment-service-ws"/>
-        <to uri="activemq:queue:payment-service-transfer"/>
-        <unmarshal>
-            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-        </unmarshal>
-    </route>
-</camelContext>
+        <route id="wsRoute">
+            <from uri="cxf:bean:paymentServiceEndpoint"/>
+            <transform>
+                <language language="simple">${in.body[0]}</language>
+            </transform>
+            <marshal>
+                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+            </marshal>
+            <to uri="log:payment-service-ws"/>
+            <to uri="activemq:queue:payment-service-transfer"/>
+            <unmarshal>
+                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+            </unmarshal>
+        </route>
+    </camelContext>
 
 </beans>

@@ -48,7 +48,7 @@
                             org.springframework.beans.factory.config,
                             com.fusesource.examples.payment_service,
                             com.fusesource.examples.payment_service.types,
-			    javax.xml.namespace
+			                javax.xml.namespace
                         </Import-Package>
                         <Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
                     </instructions>

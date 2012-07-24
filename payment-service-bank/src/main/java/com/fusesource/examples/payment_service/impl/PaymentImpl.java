@@ -19,18 +19,16 @@ package com.fusesource.examples.payment_service.impl;
 import com.fusesource.examples.payment_service.Payment;
 import com.fusesource.examples.payment_service.types.TransferRequest;
 import com.fusesource.examples.payment_service.types.TransferResponse;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PaymentImpl implements Payment {
-    private static final Log LOG = LogFactory.getLog(PaymentImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PaymentImpl.class);
 
     public TransferResponse transferFunds(TransferRequest payload) {
         TransferResponse response = new TransferResponse();
 
-        LOG.info("Bank: transferred amount " + payload.getAmount()
-                + " from " + payload.getFrom()
-                + " to " + payload.getTo());
+        LOG.info("Bank: transferred amount {} from {} to {}", new Object[]{payload.getAmount(), payload.getFrom(), payload.getTo()});
 
         response.setReply("Bank: OK");
 
