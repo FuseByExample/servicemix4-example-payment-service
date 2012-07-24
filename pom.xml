@@ -64,18 +64,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <activemq.version>5.5.1-fuse-00-06</activemq.version>
-        <aries.version>0.3</aries.version>
-        <camel.version>2.8.0-fuse-00-06</camel.version>
-        <cxf.version>2.4.2-fuse-00-06</cxf.version>
-        <karaf.version>2.2.2-fuse-00-06</karaf.version>
-        <osgi.core.version>4.2.0</osgi.core.version>
-        <pax.logging.version>1.6.2</pax.logging.version>
-        <servicemix.version>4.4.1-fuse-00-06</servicemix.version>
-        <servicemix.nmr.version>1.5.1-fuse-00-06</servicemix.nmr.version>
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <servicemix.version>4.5.0.fuse-7-061</servicemix.version>
+        <activemq.version>5.5.1.fuse-7-061</activemq.version>
+        <camel.version>2.9.0.fuse-7-061</camel.version>
+        <cxf.version>2.5.0.fuse-7-061</cxf.version>
+        <karaf.version>2.2.5.fuse-7-061</karaf.version>
+
+        <spring.version>3.0.7.RELEASE</spring.version>
         <spring.osgi.version>1.2.1</spring.osgi.version>
         <slf4j.version>1.6.1</slf4j.version>
+<!--
+        <aries.version>0.3.1.fuse-7-061</aries.version>
+        <osgi.core.version>4.2.0</osgi.core.version>
+        <pax.logging.version>1.6.7</pax.logging.version>
+-->
     </properties>
 
     <repositories>
