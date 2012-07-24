@@ -17,9 +17,9 @@
   -->
 
 <features name="payment-service"
-          xmlns="http://karaf.apache.org/xmlns/features/v1.1.0"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.1.0 http://karaf.apache.org/xmlns/features/v1.1.0">
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0">
     <repository>mvn:org.apache.servicemix/apache-servicemix/${servicemix.version}/xml/features</repository>
     <repository>mvn:org.apache.camel.karaf/apache-camel/${camel.version}/xml/features</repository>
 
