@@ -14,7 +14,7 @@ technologies. Following is a brief overview of the included modules. I'll
 be trying to blog in more detail about why parts of this solution were created
 this way.
 
-http://scottcranton.blogspot.com/
+http://fusebyexample.blogspot.com/
 
 Module Overview:
 * payment-service-shared: contains wsdl and generated JAXB artifacts, providing
