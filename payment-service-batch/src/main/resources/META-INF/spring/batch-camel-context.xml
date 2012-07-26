@@ -27,12 +27,12 @@
         <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>
 
-    <camelContext id="batchContext" xmlns="http://camel.apache.org/schema/spring" trace="false">
+    <camelContext trace="false" id="batchContext" xmlns="http://camel.apache.org/schema/spring">
     <route id="batchRoute">
         <from uri="file:tmp/file-in?delete=true"/>
         <to uri="log:batchSplitLog"/>
         <split timeout="0">
-            <language language="xpath">/typ:transfers/typ:transferRequest</language>
+            <xpath>/typ:transfers/typ:transferRequest</xpath>
             <inOut uri="activemq:queue:payment-service-transfer"/>
         </split>
     </route>

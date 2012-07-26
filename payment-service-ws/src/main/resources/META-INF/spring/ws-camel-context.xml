@@ -35,21 +35,21 @@
         <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>
 
-    <camelContext id="wsContext" xmlns="http://camel.apache.org/schema/spring" trace="false">
-        <route id="wsRoute">
-            <from uri="cxf:bean:paymentServiceEndpoint"/>
-            <transform>
-                <language language="simple">${in.body[0]}</language>
-            </transform>
-            <marshal>
-                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </marshal>
-            <to uri="log:payment-service-ws"/>
-            <to uri="activemq:queue:payment-service-transfer"/>
-            <unmarshal>
-                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </unmarshal>
-        </route>
-    </camelContext>
+    <camelContext trace="false" id="wsContext" xmlns="http://camel.apache.org/schema/spring">
+    <route id="wsRoute">
+        <from uri="cxf:bean:paymentServiceEndpoint"/>
+        <transform>
+            <simple>${in.body[0]}</simple>
+        </transform>
+        <marshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </marshal>
+        <to uri="log:payment-service-ws"/>
+        <to uri="activemq:queue:payment-service-transfer"/>
+        <unmarshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </unmarshal>
+    </route>
+</camelContext>
 
 </beans>

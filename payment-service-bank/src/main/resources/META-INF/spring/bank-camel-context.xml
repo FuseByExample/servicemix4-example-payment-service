@@ -30,18 +30,18 @@
 
     <bean class="com.fusesource.examples.payment_service.impl.PaymentImpl" id="paymentServiceSE" init-method="init"/>
 
-    <camelContext id="bankContext" xmlns="http://camel.apache.org/schema/spring" trace="false">
-        <route id="bankRoute">
-            <from uri="activemq:queue:payment-service-transfer"/>
-            <to uri="log:payment-service-bank"/>
-            <unmarshal>
-                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </unmarshal>
-            <bean ref="paymentServiceSE"/>
-            <marshal>
-                <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
-            </marshal>
-        </route>
-    </camelContext>
+    <camelContext trace="false" id="bankContext" xmlns="http://camel.apache.org/schema/spring">
+    <route id="bankRoute">
+        <from uri="activemq:queue:payment-service-transfer"/>
+        <to uri="log:payment-service-bank"/>
+        <unmarshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </unmarshal>
+        <bean ref="paymentServiceSE"/>
+        <marshal>
+            <jaxb contextPath="com.fusesource.examples.payment_service.types"/>
+        </marshal>
+    </route>
+</camelContext>
 
 </beans>
