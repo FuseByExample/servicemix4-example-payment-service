@@ -26,7 +26,7 @@
     <packaging>pom</packaging>
     <name>FuseSource Example Payment Service</name>
     <version>1.3.0-SNAPSHOT</version>
-    <url>http://fusesource.com/</url>
+    <url>https://github.com/FuseByExample/servicemix4-example-payment-service/</url>
 
     <licenses>
         <license>
@@ -43,9 +43,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git@github.com:scranton/servicemix4-example-payment-service.git</connection>
-        <url>scm:git:git@github.com:scranton/servicemix4-example-payment-service.git</url>
-        <developerConnection>scm:git:git@github.com:scranton/servicemix4-example-payment-service.git</developerConnection>
+        <connection>scm:git@github.com:FuseByExample/servicemix4-example-payment-service.git</connection>
+        <url>scm:git@github.com:FuseByExample/servicemix4-example-payment-service.git</url>
+        <developerConnection>scm:git@github.com:FuseByExample/servicemix4-example-payment-service.git</developerConnection>
     </scm>
 
     <developers>
