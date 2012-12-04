@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright 2012 FuseSource
+  ~ Copyright (C) Red Hat, Inc.
+  ~ http://www.redhat.com
   ~
-  ~    Licensed under the Apache License, Version 2.0 (the "License");
-  ~    you may not use this file except in compliance with the License.
-  ~    You may obtain a copy of the License at
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
   ~
-  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~    http://www.apache.org/licenses/LICENSE-2.0
   ~
-  ~    Unless required by applicable law or agreed to in writing, software
-  ~    distributed under the License is distributed on an "AS IS" BASIS,
-  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~    See the License for the specific language governing permissions and
-  ~    limitations under the License.
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -21,11 +22,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.fusesource.examples</groupId>
+    <groupId>org.fusesource.examples</groupId>
     <artifactId>payment-service</artifactId>
     <packaging>pom</packaging>
-    <name>FuseSource Example Payment Service</name>
-    <version>1.3.0-SNAPSHOT</version>
+    <name>Fuse ESB Example Payment Service</name>
+    <version>1.4.0-SNAPSHOT</version>
     <url>https://github.com/FuseByExample/servicemix4-example-payment-service/</url>
 
     <licenses>
@@ -38,8 +39,8 @@
     </licenses>
 
     <organization>
-        <name>FuseSource</name>
-        <url>http://fusesource.com</url>
+        <name>Red Hat</name>
+        <url>http://redhat.com</url>
     </organization>
 
     <scm>
@@ -52,9 +53,9 @@
         <developer>
             <id>scranton</id>
             <name>Scott Cranton</name>
-            <email>scranton@fusesource.com</email>
-            <organization>FuseSource</organization>
-            <organizationUrl>http://fusesource.com</organizationUrl>
+            <email>scranton@redhat.com</email>
+            <organization>Red Hat</organization>
+            <organizationUrl>http://redhat.com</organizationUrl>
             <roles>
                 <role>Jr Assistant Bottle Washer</role>
             </roles>
@@ -64,11 +65,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <servicemix.version>4.5.0.fuse-7-061</servicemix.version>
-        <activemq.version>5.5.1.fuse-7-061</activemq.version>
-        <camel.version>2.9.0.fuse-7-061</camel.version>
-        <cxf.version>2.5.0.fuse-7-061</cxf.version>
-        <karaf.version>2.2.5.fuse-7-061</karaf.version>
+        <servicemix.version>4.5.0.fuse-70-097</servicemix.version>
+        <activemq.version>5.5.1.fuse-70-097</activemq.version>
+        <camel.version>2.9.0.fuse-70-097</camel.version>
+        <cxf.version>2.5.0.fuse-70-097</cxf.version>
+        <karaf.version>2.2.5.fuse-70-097</karaf.version>
 
         <spring.version>3.0.7.RELEASE</spring.version>
         <spring.osgi.version>1.2.1</spring.osgi.version>
@@ -84,7 +85,7 @@
         <repository>
             <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
-            <url>http://repo.fusesource.com/maven2/</url>
+            <url>http://repo.fusesource.com/nexus/content/repositories/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -97,7 +98,7 @@
         <pluginRepository>
             <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
-            <url>http://repo.fusesource.com/maven2/</url>
+            <url>http://repo.fusesource.com/nexus/content/repositories/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -127,41 +128,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.5.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.4</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.3.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.3.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.5</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.12</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.7</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.cxf</groupId>
