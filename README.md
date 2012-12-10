@@ -48,7 +48,6 @@ To run:
 
     karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features
 
-
 4) Install the bundles.
 
    Note: payment-service-shared gets installed by the other features.
@@ -59,7 +58,7 @@ To run:
 
    there is also a shortcut features that installs all the others
 
-karaf@root> features:install payment-service-all
+    karaf@root> features:install payment-service-all
 
 5) To test the batch file processing, there is an existing batch file in the
    payment-service-batch modules.
@@ -78,8 +77,7 @@ karaf@root> features:install payment-service-all
     <Fuse ESB home> $ tail -f data/log/fuseesb.log
 
 6) To test the WS, use your favorite WS tool (e.g. SoapUI) against the following
-   WSDLs hosted by the payment-service-ws bundle.
-   * http://localhost:9090/paymentService?WSDL
+   WSDLs hosted by the payment-service-ws bundle -- http://localhost:9090/paymentService?WSDL
 
    you can also the payment-service-client, which shows using CXF generated
    client code
