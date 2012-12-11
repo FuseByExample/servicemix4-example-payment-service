@@ -83,3 +83,16 @@ To run:
    client code
 
     payment-service/payment-service-client> mvn -PPayment
+
+## Note:
+if you see linkage errors related to javax.activation.DataHandler, you may need to edit
+Fuse ESB's `etc/jre.properties` file, and add javax.activation to the list of packages exported
+by the base bundle by uncommenting (remote the leading '#') the javax.activation line.
+
+    jre-1.6= \
+     javax.accessibility, \
+     javax.activation;version="1.1", \
+     javax.activity, \
+     ....
+
+
