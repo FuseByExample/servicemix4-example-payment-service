@@ -84,15 +84,19 @@ To run:
 
     payment-service/payment-service-client> mvn -PPayment
 
-## Note:
-if you see linkage errors related to javax.activation.DataHandler, you may need to edit
-Fuse ESB's `etc/jre.properties` file, and add javax.activation to the list of packages exported
-by the base bundle by uncommenting (remote the leading '#') the javax.activation line.
+## Notes
 
-    jre-1.6= \
-     javax.accessibility, \
-     javax.activation;version="1.1", \
-     javax.activity, \
-     ....
+* if you see linkage errors related to javax.activation.DataHandler, you may need to edit Fuse ESB's
+ `etc/jre.properties` file, and add javax.activation to the list of packages exported by the base
+ bundle by uncommenting (remote the leading '#') the javax.activation line.
 
+    jre-1.6= \  
+      javax.accessibility, \  
+      javax.activation;version="1.1", \  
+      javax.activity, \  
+      ....  
+
+* In Fuse ESB, make sure that you've added a smx/smx userid and password to
+ `<Fuse ESB Home>/etc/users.properties`, or update the included Camel route to the userid and
+ password you have defined for the Fuse ESB embedded ActiveMQ.
 
