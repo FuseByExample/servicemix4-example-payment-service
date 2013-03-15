@@ -65,11 +65,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <servicemix.version>4.5.0.fuse-70-097</servicemix.version>
-        <activemq.version>5.5.1.fuse-70-097</activemq.version>
-        <camel.version>2.9.0.fuse-70-097</camel.version>
-        <cxf.version>2.5.0.fuse-70-097</cxf.version>
-        <karaf.version>2.2.5.fuse-70-097</karaf.version>
+        <activemq.version>5.7.0.fuse-71-047</activemq.version>
+        <camel.version>2.10.0.fuse-71-047</camel.version>
+        <cxf.version>2.6.0.fuse-71-047</cxf.version>
+        <karaf.version>2.3.0.fuse-71-047</karaf.version>
 
         <spring.version>3.0.7.RELEASE</spring.version>
         <spring.osgi.version>1.2.1</spring.osgi.version>

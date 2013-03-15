@@ -1,4 +1,4 @@
-This project is an example of using OSGi, Camel, and ServiceMix together.
+This project is an example of using OSGi, Camel, and Fuse ESB together.
 A number of things are shown within this project:
 
 * use of the ActiveMQ and activemq-camel component for inter OSGi bundle communication
@@ -29,7 +29,7 @@ Module Overview:
 
 Requirements:
 
-* Fuse ESB 7.0.2 (http://fusesource.com/downloads/)
+* Fuse ESB 7.1.0 (http://fusesource.com/downloads/)
 * Maven 2.2.1 or 3.0 (http://maven.apache.org/)
 * Java SE 6
 
@@ -43,22 +43,22 @@ To run:
 
     <Fuse ESB home> $ bin/fuseesb
 
-3) Add this projects features.xml config to ServiceMix from the ServiceMix
+3) Add this projects features.xml config to Fuse ESB from the Fuse
    Console (makes it easier to install bundles with all required dependencies)
 
-    karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features
+    FuseESB:karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features
 
 4) Install the bundles.
 
    Note: payment-service-shared gets installed by the other features.
 
-    karaf@root> features:install payment-service-bank
-    karaf@root> features:install payment-service-ws
-    karaf@root> features:install payment-service-batch
+    FuseESB:karaf@root> features:install payment-service-bank
+    FuseESB:karaf@root> features:install payment-service-ws
+    FuseESB:karaf@root> features:install payment-service-batch
 
    there is also a shortcut features that installs all the others
 
-    karaf@root> features:install payment-service-all
+    FuseESB:karaf@root> features:install payment-service-all
 
 5) To test the batch file processing, there is an existing batch file in the
    payment-service-batch modules.
@@ -66,11 +66,11 @@ To run:
    Note: <Fuse ESB Home>/tmp/file-in directory is created automatically by
          Camel within the payment-service-batch bundle.
 
-    <project home> $ cp payment-service-batch/transfers.xml <ServiceMix Home>/tmp/file-in
+    <project home> $ cp payment-service-batch/transfers.xml <Fuse ESB home>/tmp/file-in
 
-   To see what happened look at the ServiceMix log file, either from the console
+   To see what happened look at the Fuse ESB log file, either from the console
 
-    karaf@root> log:display
+    FuseESB:karaf@root> log:display
 
    or from the command line
 
