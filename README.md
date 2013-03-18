@@ -1,4 +1,4 @@
-This project is an example of using OSGi, Camel, and Fuse ESB together.
+This project is an example of using OSGi, Camel, and JBoss Fuse together.
 A number of things are shown within this project:
 
 * use of the ActiveMQ and activemq-camel component for inter OSGi bundle communication
@@ -29,7 +29,7 @@ Module Overview:
 
 Requirements:
 
-* Fuse ESB 7.1.0 (http://fusesource.com/downloads/)
+* JBoss Fuse 6.0.0 (https://access.redhat.com/jbossnetwork/ - registration required)
 * Maven 2.2.1 or 3.0 (http://maven.apache.org/)
 * Java SE 6
 
@@ -39,42 +39,42 @@ To run:
 
     <project home> $ mvn clean install
 
-2) Start Fuse ESB (based on Apache ServiceMix 4)
+2) Start JBoss Fuse (based on Apache ServiceMix 4)
 
-    <Fuse ESB home> $ bin/fuseesb
+    <JBoss Fuse home> $ bin/fuseesb
 
-3) Add this projects features.xml config to Fuse ESB from the Fuse
+3) Add this projects features.xml config to JBoss Fuse from the Fuse
    Console (makes it easier to install bundles with all required dependencies)
 
-    FuseESB:karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features
+    JBossFuse:karaf@root> features:addUrl mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features
 
 4) Install the bundles.
 
    Note: payment-service-shared gets installed by the other features.
 
-    FuseESB:karaf@root> features:install payment-service-bank
-    FuseESB:karaf@root> features:install payment-service-ws
-    FuseESB:karaf@root> features:install payment-service-batch
+    JBossFuse:karaf@root> features:install payment-service-bank
+    JBossFuse:karaf@root> features:install payment-service-ws
+    JBossFuse:karaf@root> features:install payment-service-batch
 
    there is also a shortcut features that installs all the others
 
-    FuseESB:karaf@root> features:install payment-service-all
+    JBossFuse:karaf@root> features:install payment-service-all
 
 5) To test the batch file processing, there is an existing batch file in the
    payment-service-batch modules.
 
-   Note: <Fuse ESB Home>/tmp/file-in directory is created automatically by
+   Note: <JBoss Fuse Home>/tmp/file-in directory is created automatically by
          Camel within the payment-service-batch bundle.
 
-    <project home> $ cp payment-service-batch/transfers.xml <Fuse ESB home>/tmp/file-in
+    <project home> $ cp payment-service-batch/transfers.xml <JBoss Fuse home>/tmp/file-in
 
-   To see what happened look at the Fuse ESB log file, either from the console
+   To see what happened look at the JBoss Fuse log file, either from the console
 
-    FuseESB:karaf@root> log:display
+    JBossFuse:karaf@root> log:display
 
    or from the command line
 
-    <Fuse ESB home> $ tail -f data/log/fuseesb.log
+    <JBoss Fuse home> $ tail -f data/log/fuseesb.log
 
 6) To test the WS, use your favorite WS tool (e.g. SoapUI) against the following
    WSDLs hosted by the payment-service-ws bundle -- http://localhost:9090/paymentService?WSDL
@@ -86,7 +86,7 @@ To run:
 
 ## Notes
 
-* if you see linkage errors related to javax.activation.DataHandler, you may need to edit Fuse ESB's
+* if you see linkage errors related to javax.activation.DataHandler, you may need to edit JBoss Fuse's
  `etc/jre.properties` file, and add javax.activation to the list of packages exported by the base
  bundle by uncommenting (remote the leading '#') the javax.activation line.
 
@@ -96,7 +96,7 @@ To run:
       javax.activity, \  
       ....  
 
-* In Fuse ESB, make sure that you've added a smx/smx userid and password to
- `<Fuse ESB Home>/etc/users.properties`, or update the included Camel route to the userid and
- password you have defined for the Fuse ESB embedded ActiveMQ.
+* In JBoss Fuse, make sure that you've added a smx/smx userid and password to
+ `<JBoss Fuse Home>/etc/users.properties`, or update the included Camel route to the userid and
+ password you have defined for the JBoss Fuse embedded ActiveMQ.
 
