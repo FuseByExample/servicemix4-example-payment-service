@@ -1,5 +1,5 @@
 # Create base profile used by all other profiles
-fabric:profile-create --parents camel,activemq-client payment-service-base
+fabric:profile-create --parents camel --parents activemq-client payment-service-base
 fabric:profile-edit --repositories mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features payment-service-base
 
 # Create Bank profile
