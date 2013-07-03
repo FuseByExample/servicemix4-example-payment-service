@@ -17,40 +17,45 @@
   -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:camel="http://camel.apache.org/schema/spring"
-       xmlns:cxf="http://camel.apache.org/schema/cxf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
        ">
 
-
     <cxf:cxfEndpoint id="paymentServiceEndpoint"
                      address="http://localhost:9090/paymentService"
                      serviceClass="org.fusesource.examples.payment_service.Payment"/>
 
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:ws.properties"/>
+        <property name="systemPropertiesMode" value="2"/>
+    </bean>
+
     <!-- Set username and password to values you set in etc/user.properties -->
     <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-        <property name="userName" value="smx"/>
-        <property name="password" value="smx"/>
+        <property name="brokerURL" value="${brokerURL}"/>
+        <property name="userName" value="${userName}"/>
+        <property name="password" value="${password}"/>
     </bean>
 
     <camelContext trace="false" id="wsContext" xmlns="http://camel.apache.org/schema/spring">
-    <route id="wsRoute">
-        <from uri="cxf:bean:paymentServiceEndpoint"/>
-        <transform>
-            <simple>${in.body[0]}</simple>
-        </transform>
-        <marshal>
-            <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
-        </marshal>
-        <to uri="log:payment-service-ws"/>
-        <to uri="activemq:queue:payment-service-transfer"/>
-        <unmarshal>
-            <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
-        </unmarshal>
-    </route>
-</camelContext>
+        <route id="wsRoute">
+            <from uri="cxf:bean:paymentServiceEndpoint"/>
+            <transform>
+                <simple>${in.body[0]}</simple>
+            </transform>
+            <marshal>
+                <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </marshal>
+            <log logName="payment-service-ws" message="request = ${body}"/>
+            <to uri="activemq:queue:payment-service-transfer"/>
+            <unmarshal>
+                <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </unmarshal>
+        </route>
+    </camelContext>
 
 </beans>

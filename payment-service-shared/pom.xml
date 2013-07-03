@@ -30,7 +30,7 @@
 
     <artifactId>payment-service-shared</artifactId>
     <packaging>bundle</packaging>
-    <name>Fuse ESB Example Payment Service :: Shared</name>
+    <name>JBoss Fuse ESB Example Payment Service :: Shared</name>
 
     <build>
         <defaultGoal>install</defaultGoal>

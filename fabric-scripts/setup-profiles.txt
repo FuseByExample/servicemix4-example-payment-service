@@ -1,0 +1,18 @@
+# Create base profile used by all other profiles
+fabric:profile-create --parents camel,activemq-client payment-service-base
+fabric:profile-edit --repositories mvn:org.fusesource.examples/payment-service-shared/1.4.0-SNAPSHOT/xml/features payment-service-base
+
+# Create Bank profile
+fabric:profile-create --parents payment-service-base payment-service-bank
+fabric:profile-edit --features payment-service-bank payment-service-bank
+fabric:profile-edit --system brokerURL=discovery:(fabric:default) payment-service-bank
+
+# Create WS profile
+fabric:profile-create --parents payment-service-base payment-service-ws
+fabric:profile-edit --features payment-service-ws payment-service-ws
+fabric:profile-edit --system brokerURL=discovery:(fabric:default) payment-service-ws
+
+# Create Batch profile
+fabric:profile-create --parents payment-service-base payment-service-batch
+fabric:profile-edit --features payment-service-batch payment-service-batch
+fabric:profile-edit --system brokerURL=discovery:(fabric:default) payment-service-batch

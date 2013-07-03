@@ -17,7 +17,6 @@
   -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:camel="http://camel.apache.org/schema/spring"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -25,27 +24,32 @@
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
        ">
 
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:bank.properties"/>
+        <property name="systemPropertiesMode" value="2"/>
+    </bean>
+
     <!-- Set username and password to values you set in etc/user.properties -->
     <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-        <property name="userName" value="smx"/>
-        <property name="password" value="smx"/>
+        <property name="brokerURL" value="${brokerURL}"/>
+        <property name="userName" value="${userName}"/>
+        <property name="password" value="${password}"/>
     </bean>
 
     <bean class="org.fusesource.examples.payment_service.impl.PaymentImpl" id="paymentServiceSE" init-method="init"/>
 
     <camelContext trace="false" id="bankContext" xmlns="http://camel.apache.org/schema/spring">
-    <route id="bankRoute">
-        <from uri="activemq:queue:payment-service-transfer"/>
-        <to uri="log:payment-service-bank"/>
-        <unmarshal>
-            <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
-        </unmarshal>
-        <bean ref="paymentServiceSE"/>
-        <marshal>
-            <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
-        </marshal>
-    </route>
-</camelContext>
+        <route id="bankRoute">
+            <from uri="activemq:queue:payment-service-transfer"/>
+            <log logName="payment-service-bank" message="transfer = ${body}"/>
+            <unmarshal>
+                <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </unmarshal>
+            <bean ref="paymentServiceSE"/>
+            <marshal>
+                <jaxb contextPath="org.fusesource.examples.payment_service.types"/>
+            </marshal>
+        </route>
+    </camelContext>
 
 </beans>

@@ -29,7 +29,7 @@
 
     <artifactId>payment-service-client</artifactId>
     <packaging>jar</packaging>
-    <name>Fuse ESB Example Payment Service :: WS Client</name>
+    <name>JBoss Fuse ESB Example Payment Service :: WS Client</name>
     <description>SOAP/HTTP Client</description>
     <url>http://redhat.com</url>
 
@@ -37,6 +37,22 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>payment-service-shared</artifactId>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

@@ -17,13 +17,13 @@
 
 package org.fusesource.examples.payment_service.client;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.fusesource.examples.payment_service.Payment;
 import org.fusesource.examples.payment_service.PaymentService;
 import org.fusesource.examples.payment_service.types.TransferRequest;
 import org.fusesource.examples.payment_service.types.TransferResponse;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class PaymentClient {
     private static final String WSDL_URL = "http://localhost:9090/paymentService?WSDL";
@@ -33,8 +33,8 @@ public class PaymentClient {
 
         TransferRequest request = new TransferRequest();
         request.setBank("bank1");
-        request.setFrom("Scott");
-        request.setTo("Claus");
+        request.setFrom("Eric");
+        request.setTo("Scott");
         request.setAmount("40.00");
 
         System.out.println("Request Bank = " + request.getBank());

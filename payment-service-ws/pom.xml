@@ -29,7 +29,7 @@
 
     <artifactId>payment-service-ws</artifactId>
     <packaging>bundle</packaging>
-    <name>Fuse ESB Example Payment Service :: WS Frontend</name>
+    <name>JBoss Fuse ESB Example Payment Service :: WS Frontend</name>
     <description>SOAP/HTTP Frontend for Payment Service</description>
     <url>http://redhat.com</url>
 
@@ -37,6 +37,11 @@
         <defaultGoal>install</defaultGoal>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -48,7 +53,7 @@
                             org.springframework.beans.factory.config,
                             org.fusesource.examples.payment_service,
                             org.fusesource.examples.payment_service.types,
-			                javax.xml.namespace
+                            javax.xml.namespace
                         </Import-Package>
                         <Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
                     </instructions>
@@ -80,6 +85,22 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

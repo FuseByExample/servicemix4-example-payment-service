@@ -24,22 +24,27 @@
         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
        ">
 
+    <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:batch.properties"/>
+        <property name="systemPropertiesMode" value="2"/>
+    </bean>
+
     <!-- Set username and password to values you set in etc/user.properties -->
     <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-        <property name="userName" value="smx"/>
-        <property name="password" value="smx"/>
+        <property name="brokerURL" value="${brokerURL}"/>
+        <property name="userName" value="${userName}"/>
+        <property name="password" value="${password}"/>
     </bean>
 
     <camelContext trace="false" id="batchContext" xmlns="http://camel.apache.org/schema/spring">
-    <route id="batchRoute">
-        <from uri="file:tmp/file-in?delete=true"/>
-        <to uri="log:batchSplitLog"/>
-        <split timeout="0">
-            <xpath>/typ:transfers/typ:transferRequest</xpath>
-            <inOut uri="activemq:queue:payment-service-transfer"/>
-        </split>
-    </route>
-</camelContext>
+        <route id="batchRoute">
+            <from uri="file:tmp/file-in?delete=true"/>
+            <log logName="payment-service-batch" message="batch = ${body}"/>
+            <split timeout="0">
+                <xpath>/typ:transfers/typ:transferRequest</xpath>
+                <inOut uri="activemq:queue:payment-service-transfer"/>
+            </split>
+        </route>
+    </camelContext>
 
 </beans>

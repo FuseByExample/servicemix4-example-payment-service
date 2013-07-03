@@ -22,14 +22,17 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0">
     <repository>mvn:org.apache.camel.karaf/apache-camel/${camel.version}/xml/features</repository>
+    <repository>mvn:org.apache.activemq/activemq-karaf/${activemq.version}/xml/features</repository>
 
     <feature name='payment-service-bank' version='${project.version}'>
+        <feature version="${activemq.version}">activemq-camel</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
         <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
         <bundle>mvn:${project.groupId}/payment-service-bank/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-ws' version='${project.version}'>
+        <feature version="${activemq.version}">activemq-camel</feature>
         <feature version="${camel.version}">camel-cxf</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
         <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>
@@ -37,10 +40,12 @@
     </feature>
 
     <feature name='payment-service-batch' version='${project.version}'>
+        <feature version="${activemq.version}">activemq-camel</feature>
         <bundle>mvn:${project.groupId}/payment-service-batch/${project.version}</bundle>
     </feature>
 
     <feature name='payment-service-all' version='${project.version}'>
+        <feature version="${activemq.version}">activemq-camel</feature>
         <feature version="${camel.version}">camel-cxf</feature>
         <feature version="${camel.version}">camel-jaxb</feature>
         <bundle>mvn:${project.groupId}/payment-service-shared/${project.version}</bundle>

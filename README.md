@@ -11,12 +11,7 @@ either through a WS (SOAP/HTTP) interface or through batch files.
 
 This solution is a bit over-engineered, but the goal of this effort is to
 provide examples of best practices in creating applications using these
-technologies. Following is a brief overview of the included modules. I'll
-be trying to blog in more detail about why parts of this solution were created
-this way.
-
-http://fusebyexample.blogspot.com/
-
+technologies. Following is a brief overview of the included modules.
 Module Overview:
 
 * payment-service-shared: contains wsdl and generated JAXB artifacts, providing
@@ -29,8 +24,8 @@ Module Overview:
 
 Requirements:
 
-* JBoss Fuse 6.0.0 (https://access.redhat.com/jbossnetwork/ - registration required)
-* Maven 2.2.1 or 3.0 (http://maven.apache.org/)
+* JBoss Fuse 6.0.0 (http://www.jboss.org/jbossfuse)
+* Maven 3.0 (http://maven.apache.org/)
 * Java SE 6
 
 To run:
@@ -39,9 +34,9 @@ To run:
 
     <project home> $ mvn clean install
 
-2) Start JBoss Fuse (based on Apache ServiceMix 4)
+2) Start JBoss Fuse (based on Apache ServiceMix 4.5)
 
-    <JBoss Fuse home> $ bin/fuseesb
+    <JBoss Fuse home> $ bin/fuse
 
 3) Add this projects features.xml config to JBoss Fuse from the Fuse
    Console (makes it easier to install bundles with all required dependencies)
@@ -74,7 +69,7 @@ To run:
 
    or from the command line
 
-    <JBoss Fuse home> $ tail -f data/log/fuseesb.log
+    <JBoss Fuse home> $ tail -f data/log/fuse.log
 
 6) To test the WS, use your favorite WS tool (e.g. SoapUI) against the following
    WSDLs hosted by the payment-service-ws bundle -- http://localhost:9090/paymentService?WSDL
@@ -96,7 +91,7 @@ To run:
       javax.activity, \  
       ....  
 
-* In JBoss Fuse, make sure that you've added a smx/smx userid and password to
+* In JBoss Fuse, make sure that you've added a admin/admin userid and password to
  `<JBoss Fuse Home>/etc/users.properties`, or update the included Camel route to the userid and
  password you have defined for the JBoss Fuse embedded ActiveMQ.
 

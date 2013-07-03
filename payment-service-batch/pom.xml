@@ -30,7 +30,7 @@
 
     <artifactId>payment-service-batch</artifactId>
     <packaging>bundle</packaging>
-    <name>Fuse ESB Example Payment Service :: Batch File</name>
+    <name>JBoss Fuse ESB Example Payment Service :: Batch File</name>
     <description>Batch File Splitter for Payment Service</description>
     <url>http://redhat.com</url>
 
@@ -38,6 +38,11 @@
         <defaultGoal>install</defaultGoal>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -62,6 +67,22 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
