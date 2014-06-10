@@ -66,10 +66,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <activemq.version>5.9.0.redhat-610312</activemq.version>
-        <camel.version>2.12.0.redhat-610312</camel.version>
-        <cxf.version>2.7.0.redhat-610312</cxf.version>
-        <karaf.version>2.3.0.redhat-610312</karaf.version>
+        <activemq.version>5.9.0.redhat-610379</activemq.version>
+        <camel.version>2.12.0.redhat-610379</camel.version>
+        <cxf.version>2.7.0.redhat-610379</cxf.version>
+        <karaf.version>2.3.0.redhat-610379</karaf.version>
 
         <spring.version>3.1.3.RELEASE</spring.version>
         <spring.osgi.version>1.2.1</spring.osgi.version>
@@ -81,7 +81,7 @@
         <repository>
             <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
-            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -91,8 +91,8 @@
         </repository>
         <repository>
             <id>fusesource.ea</id>
-            <name>FuseSource Early Access</name>
-            <url>http://repo.fusesource.com/nexus/content/groups/ea</url>
+            <name>FuseSource Early Access Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -105,7 +105,7 @@
         <pluginRepository>
             <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
-            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -115,8 +115,8 @@
         </pluginRepository>
         <pluginRepository>
             <id>fusesource.ea</id>
-            <name>FuseSource Early Access</name>
-            <url>http://repo.fusesource.com/nexus/content/groups/ea</url>
+            <name>FuseSource Early Access Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
