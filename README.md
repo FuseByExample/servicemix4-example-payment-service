@@ -24,9 +24,9 @@ Module Overview:
 
 Requirements:
 
-* JBoss Fuse 6.1.0 (http://www.jboss.org/jbossfuse)
+* JBoss Fuse 6.2.0 (http://www.jboss.org/jbossfuse)
 * Maven 3.0 (http://maven.apache.org/)
-* Java SE 6
+* Java SE 7
 
 To run:
 
