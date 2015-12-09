@@ -66,12 +66,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <activemq.version>5.11.0.redhat-621083</activemq.version>
+        <activemq.version>5.11.0.redhat-621084</activemq.version>
         <build.helper.maven.plugin.version>1.9.1</build.helper.maven.plugin.version>
-        <camel.version>2.15.1.redhat-621083</camel.version>
-        <cxf.version>3.0.4.redhat-621083</cxf.version>
+        <camel.version>2.15.1.redhat-621084</camel.version>
+        <cxf.version>3.0.4.redhat-621084</cxf.version>
         <felix.maven.bundle.plugin.version>2.5.3</felix.maven.bundle.plugin.version>
-        <karaf.version>2.4.0.redhat-621083</karaf.version>
+        <karaf.version>2.4.0.redhat-621084</karaf.version>
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
