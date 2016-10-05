@@ -66,26 +66,42 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <activemq.version>5.11.0.redhat-621084</activemq.version>
+        <jboss.fuse.bom.version>6.3.0.redhat-191</jboss.fuse.bom.version>
+
+        <activemq.version>5.11.0.redhat-630193</activemq.version>
         <build.helper.maven.plugin.version>1.9.1</build.helper.maven.plugin.version>
-        <camel.version>2.15.1.redhat-621084</camel.version>
-        <cxf.version>3.0.4.redhat-621084</cxf.version>
+        <maven.exec.plugin.version>1.3.2</maven.exec.plugin.version>
+        <camel.version>2.17.0.redhat-630193</camel.version>
+        <cxf.version>3.1.5.redhat-630193</cxf.version>
+
         <felix.maven.bundle.plugin.version>2.5.3</felix.maven.bundle.plugin.version>
-        <karaf.version>2.4.0.redhat-621084</karaf.version>
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <spring.version>3.2.11.RELEASE</spring.version>
-        <spring.osgi.version>1.2.1</spring.osgi.version>
-        <slf4j.version>1.7.10</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.fuse.bom</groupId>
+                <artifactId>jboss-fuse-parent</artifactId>
+                <version>${jboss.fuse.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>payment-service-shared</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <repositories>
         <repository>
-            <id>fusesource.releases</id>
-            <name>FuseSource Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
+            <id>redhat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -94,22 +110,21 @@
             </snapshots>
         </repository>
         <repository>
-            <id>fusesource.ea</id>
-            <name>FuseSource Early Access Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>redhat-ea-repository</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
-            <id>fusesource.releases</id>
-            <name>FuseSource Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
+            <id>redhat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -118,15 +133,14 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>fusesource.ea</id>
-            <name>FuseSource Early Access Release Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>redhat-ea-repository</id>
+            <url>https://maven.repository.redhat.com/earlyaccess/all</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
@@ -175,7 +189,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>${build.helper.maven.plugin.version}</version>
+                    <version>${maven.exec.plugin.version}</version>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
                 <plugin>
@@ -211,61 +225,6 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>payment-service-shared</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-jaxb</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-cxf</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-spring</artifactId>
-                <version>${camel.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>activemq-camel</artifactId>
-                <version>${activemq.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-http-jetty</artifactId>
-                <version>${cxf.version}</version>
-            </dependency>
-
-            <!-- logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <modules>
         <module>payment-service-shared</module>

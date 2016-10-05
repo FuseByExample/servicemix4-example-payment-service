@@ -24,8 +24,8 @@ Module Overview:
 
 Requirements:
 
-* JBoss Fuse 6.2.0 (http://www.jboss.org/jbossfuse)
-* Maven 3.0 (http://maven.apache.org/)
+* JBoss Fuse 6.3.0 (http://www.jboss.org/jbossfuse)
+* Maven 3.2.3 or newer (http://maven.apache.org/)
 * Java SE 7
 
 To run:
@@ -34,7 +34,7 @@ To run:
 
     <project home> $ mvn clean install
 
-2) Start JBoss Fuse (based on Apache ServiceMix 4.5)
+2) Start JBoss Fuse 
 
     <JBoss Fuse home> $ bin/fuse
 

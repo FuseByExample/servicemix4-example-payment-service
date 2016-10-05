@@ -55,7 +55,6 @@
                             org.fusesource.examples.payment_service.types,
                             javax.xml.namespace
                         </Import-Package>
-                        <Require-Bundle>org.apache.cxf.bundle</Require-Bundle>
                     </instructions>
                 </configuration>
             </plugin>
