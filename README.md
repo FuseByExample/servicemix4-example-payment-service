@@ -26,7 +26,7 @@ Requirements:
 
 * JBoss Fuse 6.3.0 (http://www.jboss.org/jbossfuse)
 * Maven 3.2.3 or newer (http://maven.apache.org/)
-* Java SE 7
+* Java SE 7 or Java SE 8
 
 To run:
 
@@ -35,6 +35,8 @@ To run:
     <project home> $ mvn clean install
 
 2) Start JBoss Fuse 
+
+(See the note about adding an admin user below)
 
     <JBoss Fuse home> $ bin/fuse
 
@@ -85,7 +87,7 @@ To run:
  `etc/jre.properties` file, and add javax.activation to the list of packages exported by the base
  bundle by uncommenting (remote the leading '#') the javax.activation line.
 
-    jre-1.6= \  
+    jre-1.7= \  
       javax.accessibility, \  
       javax.activation;version="1.1", \  
       javax.activity, \  
